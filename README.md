@@ -43,7 +43,7 @@
 	  1. Proc import imports AltaMed data, datastep increases variable lengths and adds format [3-18]
 	  2. Datastep edits variables and bins age [20-36]
 	  3. Proc sql adds patient counts by assignment and letter [38-60]
-		4. Proc sql recodes ethnicity, race, and gender [62-116]
+	4. Proc sql recodes ethnicity, race, and gender [62-116]
 	  5. Proc sql and proc freq calculates counts [118-173]
 	NU_sample.sas
 	Goal: Edit NU sample and calculate morphine milligram equivalents (MME)
