@@ -43,7 +43,7 @@
 	  1. Proc import imports AltaMed data, datastep increases variable lengths and adds format [3-18]
 	  2. Datastep edits variables and bins age [20-36]
 	  3. Proc sql adds patient counts by assignment and letter [38-60]
-	4. Proc sql recodes ethnicity, race, and gender [62-116]
+	  4. Proc sql recodes ethnicity, race, and gender [62-116]
 	  5. Proc sql and proc freq calculates counts [118-173]
 	NU_sample.sas
 	Goal: Edit NU sample and calculate morphine milligram equivalents (MME)
@@ -53,7 +53,7 @@
 	  4. Proc sql adds study weeks, checks study dates, and check Rx counts [195-233]  
 	disaggregate.sas 
 	Goal: Get number of visits w/out an opioid prescription and elongate data so visits without MME are 0 
-		1. Proc import imports data and datastep standardizes variable format and length for prov_deid [1-26]
+	 	1. Proc import imports data and datastep standardizes variable format and length for prov_deid [1-26]
 		2. Proc sql calculates clinician and decedent counts [28-43]
 		3. Datastep creates variables (e.g., fatal, decedent ID) [45-74]
 		4. Proc sql calculates clinician and OD victim counts for consort diagram [76-96]
