@@ -10,12 +10,12 @@
 
 	ANALYSES 
 	PRIMARY
-	1. Piecewise hierarchical Poisson regression with a knot at study week zero testing pre- to post-intervention change in log MME between 
-	study arms for AESOPS-2 clinicians (n = 60) 
+	1. Piecewise hierarchical Poisson regression with a knot at study week zero testing pre- to post-intervention change in 5 MME 
+	pill equivalents between study arms for AESOPS-2 clinicians (n = 60) 
 	2. Exponentiated coefficients result in weekly percentage decrease in 5-mg morphine equivalents
 
 	SECONDARY
-	1. Log odds (i.e., odds, probability) of clinician-visit including high dose opioid Rx (=> 50 MME)
+	1. Log odds (i.e., probability) of clinician-visit including high dose opioid Rx (=> 50 MME) for visits where an opioid was prescribed
      
 	CONTENTS 
 	1. File code descriptions in order which they should be executed 
@@ -43,7 +43,7 @@
 	  1. Proc import imports AltaMed data, datastep increases variable lengths and adds format [3-18]
 	  2. Datastep edits variables and bins age [20-36]
 	  3. Proc sql adds patient counts by assignment and letter [38-60]
-	 	4. Proc sql recodes ethnicity, race, and gender [62-116]
+		4. Proc sql recodes ethnicity, race, and gender [62-116]
 	  5. Proc sql and proc freq calculates counts [118-173]
 	NU_sample.sas
 	Goal: Edit NU sample and calculate morphine milligram equivalents (MME)
