@@ -82,8 +82,7 @@ run;
 
 *no. Rxs, clinicians, and patients overall;
 proc sql;
-	title "No. of Rxs, patients, overdose victims,
-	 and clinicians (excludes clinicians w/out Rx during study period)";
+	title "No. of Rxs, patients, overdose victims,and clinicians (excludes clinicians w/out Rx during study period)";
 	select count(distinct prov_deid) as ct_prov, 
 	count(distinct nonfatalid) as ct_nf,
 	count(distinct decedentid) as ct_dec from counts

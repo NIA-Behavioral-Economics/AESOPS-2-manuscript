@@ -15,7 +15,7 @@
 	2. Exponentiated coefficients result in weekly percentage decrease in 5-mg morphine equivalents
 
 	SECONDARY
-	1. Log odds (i.e., probability) of clinician-visit including high dose opioid Rx (=> 50 MME) for visits where an opioid was prescribed
+	1. Log odds/probability of clinician prescribing a high dose opioid prescription (=> 50 MME) 
      
 	CONTENTS 
 	1. File code descriptions in order which they should be executed 
@@ -31,28 +31,28 @@
 	CODE 
 	Table1.sas
 	Goal: Create Table 1 clinician and patient demographics/characteristics
-	  1. Proc import imports data and proc format creates format for Table 1 [1-103]
-	  2. Proc sql edits AltaMed and NU demos. Datastep appends AltaMed and NU demos. [105-231]
-	  3. Proc sql calculates counts (%) for categorical variables and mean (SD) [233-334]
-	  4. Proc sql calculates mean (SD) visits overall and by institution [336-364]
-	  5. Proc sql creates table title rows [366-392]
-	  6. Proc sql and proc transpose to get sample totals [394-415]
-	  7. Datastep appends characteristic statistics and proc report outputs formatted Table 1 [417-465]
+	   1. Proc import imports data and proc format creates Table 1 format [1-103]
+	   2. Proc sql edits AltaMed and NU demos, datastep appends AltaMed and NU demos [105-231]
+	   3. Proc sql calculates counts (%) for categorical variables and mean (SD) for continuous variables [233-334]
+	   4. Proc sql calculates mean (SD) visits overall and by institution [336-364]
+	   5. Proc sql creates table title rows [366-392]
+	   6. Proc sql and proc transpose calculates sample totals [394-415]
+	   7. Datastep appends demo statistics and proc report outputs formatted Table 1 [417-465]
 	Table1_pat.sas
-	Goal: Clean AltaMed and NU patient characteristics to use in Table1.sas
-	  1. Proc import imports AltaMed data, datastep increases variable lengths and adds format [3-18]
-	  2. Datastep edits variables and bins age [20-36]
-	  3. Proc sql adds patient counts by assignment and letter [38-60]
-	  4. Proc sql recodes ethnicity, race, and gender [62-116]
-	  5. Proc sql and proc freq calculates counts [118-173]
+	Goal: Clean AltaMed and NU patient characteristics for Table1.sas
+	   1. Proc import imports AltaMed data, datastep increases variable lengths and adds format [3-18]
+	   2. Datastep edits variables and bins age [20-36]
+	   3. Proc sql adds patient counts by assignment and letter [38-60]
+	   4. Proc sql recodes ethnicity, race, and gender [62-116]
+	   5. Proc sql and proc freq calculates counts [118-172]
 	NU_sample.sas
 	Goal: Edit NU sample and calculate morphine milligram equivalents (MME)
-	  1. Proc import imports data [13-26]
-	  2. Proc sql calculates clinician counts [28-124]
-	  3. Datastep extracts and calcualtes MME [126-193]
-	  4. Proc sql adds study weeks, checks study dates, and check Rx counts [195-233]  
+	   1. Proc import imports data [13-26]
+	   2. Proc sql calculates clinician counts [28-124]
+	   3. Datastep extracts and calcualtes MME [126-193]
+	   4. Proc sql adds study weeks, checks study dates, and checks Rx counts [195-233]  
 	disaggregate.sas 
-	Goal: Get number of visits w/out an opioid prescription and elongate data so visits without MME are 0 
+	Goal: Get number of visits w/out an opioid prescription and elongate data so visits without an opioid Rx are 0 
 	 	1. Proc import imports data and datastep standardizes variable format and length for prov_deid [1-26]
 		2. Proc sql calculates clinician and decedent counts [28-43]
 		3. Datastep creates variables (e.g., fatal, decedent ID) [45-74]
@@ -60,10 +60,19 @@
 		5. Proc sql joins number of visits per clinician week to sample [98-116]
 		6. Datastep cleans bad data (e.g., clinician weeks missing number of visits) [118-128]
 		7. Datastep and proc sql disaggregates number of nonopioid visits, proc sql sums MME by visit [130-165]
-		8. Proc sql joins opioid and patient data to get Table 1 patient sample [167-186]
-		9. Datastep makes age variable continuous and applies formats [187-197]
-		10..Proc sql combines NU clinician visits with and without opioid and AltaMed sample [199-227]
-		11. Proc sql gets consort diagaram counts and proc export exports analytic data [229-241]
-		12. Datastep creates, and proc export exports secondary data [243-262]
+		8. Proc sql joins opioid and patient data to get Table 1 patient sample [167-176]
+		9. Datastep makes age variable continuous and applies formats [178-188]
+		10. Proc sql combines NU clinician visits with and without an opioid prescription and appends AltaMed data [190-218]
+		11. Proc sql calculates consort diagaram counts and proc export exports analytic data (analytic.dta) [220-233]
+		12. Datastep creates secondary data and proc export exports (secondary_analytic.dta) [235-249]
+	glmer.r
+	Goal: Get model results for primary and secondary outcomes, and bootstrapp 95% CIs for primary outcome coefficients
+		1. Load libraries [1-6]
+		2. Import analytic dataset and make datasets for fatal and nonfatal samples [8-12]
+		3. Run hierarchical logistic models for primary and secondary outcomes [14-35]
+		4. Export model results to xlsx [37-39]
+		5. Function extracts model coefficients [41-50], creates dataframe for output [52-57], 
+			loops through each coefficient to produce bootstrapped CIs [59-75], and creates dataframe with cleaned output [77-86]
+		6. Run function and export estimates and bootstrapped CIs for primary outcome to xlsx [88-92]
 		
 	   

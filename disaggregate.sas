@@ -164,17 +164,6 @@ proc sql;
 	group by t.prov_deid, t.patient_id, l.od_id, t.visit_id, l.letter, l.fatal, t.week;
 quit;
 
-*patient counts;
-/*proc sql;
-	select count(distinct patient_id) as ct_pat from opioids;
-quit;
-
-proc sql;
-	select count(distinct patient_id) as ct_pat_studyarm, letter from opioids 
-	group by letter
-	order by letter;
-quit;*/
-
 *Table 1 patient demos;
 *N = 2,330 distinct patients, and 2,309 total (997 in control and 1412 in letter);
 proc sql;
@@ -184,15 +173,6 @@ proc sql;
 	left join 
 	pat l 
 	on t.patient_id = l.patient_id;
-quit;
-
-*patient counts;
-proc sql;
-	select count(distinct patient_id) as ct_distinct_pat from savepath.pat_demos;
-quit;
-
-proc sql;
-	select count(distinct patient_id) as ct_distinct_pat, letter from savepath.pat_demos group by letter order by letter;
 quit;
 
 *cannot convert age to continuous using 'when' statement in proc sql;
@@ -237,11 +217,7 @@ proc sql;
 	);
 quit;
 
-proc sql;
-	select distinct week, kweek, post from savepath.analytic_9Feb26
-	order by week;
-quit;
-
+*check sample counts;
 proc sql;
 	title "OD ID and clinician count by arm for analytic sample, CONSORT level 3";
 	select count(distinct prov_deid) as ct_prov, count(distinct od_id) as ct_od, fatal, letter, inst from savepath.analytic 
@@ -256,34 +232,14 @@ proc export data = savepath.analytic_9Feb26
 	replace;
 run;
 
-*observed mean MME by week fatal vs. nonfatal;
-/*proc sql;
-	create table obs_means as 
-	select letter, week, kweek, avg(total_mme) as mean_pills from savepath.analytic_9Feb26
-	where fatal = 1 and inst = "NU"
-	group by letter, week, kweek
-	order by letter, week;
-quit;
-
-proc export data = obs_means 
-	outfile = "/directory/week_pills_fatal.xlsx"
-	dbms = xlsx
-	replace;
-run;*/
-
 *secondary data;
-/*data savepath.secondary_analytic;
+data savepath.secondary_analytic;
 	set savepath.analytic_9Feb26 (rename = (gt_50_mme = gt_temp));
 	if gt_temp GE 1 then gt_50_mme = 1;
 	else gt_50_mme = 0;
 	if daily_mme ne 0 then output;
 	drop gt_temp pills daily_mme;
 run; 
-
-proc sql;
-	select distinct week, kweek, post from savepath.secondary_analytic
-	order by week;
-quit;
 
 *export secondary analytic data;
 proc export data = savepath.secondary_analytic 
