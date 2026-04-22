@@ -47,10 +47,10 @@
 	    5. Proc sql and proc freq calculates counts [118-172]
 	NU_sample.sas
 	Goal: Edit NU sample and calculate morphine milligram equivalents (MME)
-	    1. Proc import imports data [13-26]
-	    2. Proc sql calculates clinician counts [28-124]
-	    3. Datastep extracts and calcualtes MME [126-193]
-	    4. Proc sql adds study weeks, checks study dates, and checks Rx counts [195-233]  
+	     1. Proc import imports data [13-26]
+	     2. Proc sql calculates clinician counts [28-124]
+	     3. Datastep extracts and calcualtes MME [126-193]
+	     4. Proc sql adds study weeks, checks study dates, and checks Rx counts [195-233]  
 	disaggregate.sas 
 	Goal: Get number of visits w/out an opioid prescription and elongate data so visits without an opioid Rx are 0 
 	 	1. Proc import imports data and datastep standardizes variable format and length for prov_deid [1-26]
