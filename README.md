@@ -31,26 +31,26 @@
 	CODE 
 	Table1.sas
 	Goal: Create Table 1 clinician and patient demographics/characteristics
-	   1. Proc import imports data and proc format creates Table 1 format [1-103]
-	   2. Proc sql edits AltaMed and NU demos, datastep appends AltaMed and NU demos [105-231]
-	   3. Proc sql calculates counts (%) for categorical variables and mean (SD) for continuous variables [233-334]
-	   4. Proc sql calculates mean (SD) visits overall and by institution [336-364]
-	   5. Proc sql creates table title rows [366-392]
-	   6. Proc sql and proc transpose calculates sample totals [394-415]
-	   7. Datastep appends demo statistics and proc report outputs formatted Table 1 [417-465]
+	    1. Proc import imports data and proc format creates Table 1 format [1-103]
+	    2. Proc sql edits AltaMed and NU demos, datastep appends AltaMed and NU demos [105-231]
+	    3. Proc sql calculates counts (%) for categorical variables and mean (SD) for continuous variables [233-334]
+	    4. Proc sql calculates mean (SD) visits overall and by institution [336-364]
+	    5. Proc sql creates table title rows [366-392]
+	    6. Proc sql and proc transpose calculates sample totals [394-415]
+	    7. Datastep appends demo statistics and proc report outputs formatted Table 1 [417-465]
 	Table1_pat.sas
 	Goal: Clean AltaMed and NU patient characteristics for Table1.sas
-	   1. Proc import imports AltaMed data, datastep increases variable lengths and adds format [3-18]
-	   2. Datastep edits variables and bins age [20-36]
-	   3. Proc sql adds patient counts by assignment and letter [38-60]
-	   4. Proc sql recodes ethnicity, race, and gender [62-116]
-	   5. Proc sql and proc freq calculates counts [118-172]
+	    1. Proc import imports AltaMed data, datastep increases variable lengths and adds format [3-18]
+	    2. Datastep edits variables and bins age [20-36]
+	    3. Proc sql adds patient counts by assignment and letter [38-60]
+	    4. Proc sql recodes ethnicity, race, and gender [62-116]
+	    5. Proc sql and proc freq calculates counts [118-172]
 	NU_sample.sas
 	Goal: Edit NU sample and calculate morphine milligram equivalents (MME)
-	   1. Proc import imports data [13-26]
-	   2. Proc sql calculates clinician counts [28-124]
-	   3. Datastep extracts and calcualtes MME [126-193]
-	   4. Proc sql adds study weeks, checks study dates, and checks Rx counts [195-233]  
+	    1. Proc import imports data [13-26]
+	    2. Proc sql calculates clinician counts [28-124]
+	    3. Datastep extracts and calcualtes MME [126-193]
+	    4. Proc sql adds study weeks, checks study dates, and checks Rx counts [195-233]  
 	disaggregate.sas 
 	Goal: Get number of visits w/out an opioid prescription and elongate data so visits without an opioid Rx are 0 
 	 	1. Proc import imports data and datastep standardizes variable format and length for prov_deid [1-26]
